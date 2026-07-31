@@ -25,9 +25,9 @@ const CONFIG = {
   heroSubtitle: "For the girl I fell for on a Tuesday in October \u2014 eighty-eight days before you caught up to me.",
 
   /* ─── the counter (the day it became us) ─────────────────────── */
-  anniversary:    "2026-01-24",
-  counterEyebrow: "Since 24 January 2026 \u2014 the day you fell",
-  counterNote:    "\u2026and I'd already been counting for 88 days by then. I fell first. I'd fall first again.",
+  anniversary:    "2025-10-28",
+  counterEyebrow: "Since 28 October 2025 \u2014 the day I fell",
+  counterNote:    "\u2026and you caught up 88 days later, on the 24th of January. I fell first. I'd fall first again.",
 
   /* ─── our story ──────────────────────────────────────────────── */
   timeline: [
