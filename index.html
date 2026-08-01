@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1A0510">
+<title>Happy Girlfriend's Day, Shazra</title>
+<meta name="description" content="A little page made for you.">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23D9A441" d="M12 21s-7.5-4.7-10-9.3C.6 8.1 2.6 4.5 6.2 4.5c2 0 3.6 1.1 4.5 2.7.9-1.6 2.5-2.7 4.5-2.7 3.6 0 5.6 3.6 4.2 7.2C19.5 16.3 12 21 12 21z"/></svg>'>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://i.ytimg.com">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<noscript><style>body{overflow:auto!important}.gate{display:none!important}</style></noscript>
+</head>
+<body class="locked">
+
+<div class="bg" aria-hidden="true"></div>
+
+<!-- ══ the curtains — she opens the page like a show ══ -->
+<div class="gate" id="gate">
+  <div class="gate__half gate__half--left" aria-hidden="true"></div>
+  <div class="gate__half gate__half--right" aria-hidden="true"></div>
+  <div class="gate__box">
+    <span class="gate__orn" aria-hidden="true"></span>
+    <p class="gate__eyebrow" id="gateEyebrow"></p>
+    <p class="gate__for" id="gateWord"></p>
+    <p class="gate__name" id="gateName"></p>
+    <div class="gate__action">
+      <button class="gate__open" id="gateOpen" type="button"><span id="gateBtnLabel"></span></button>
+      <p class="gate__prep" id="gatePrep" aria-hidden="true"><i></i><i></i><i></i><em>getting the song ready</em></p>
+    </div>
+    <p class="gate__note" id="gateNote"></p>
+  </div>
+</div>
+
+<!-- ambient layers -->
+<canvas id="petals" aria-hidden="true"></canvas>
+<canvas id="burst" aria-hidden="true"></canvas>
+<div class="pbar" id="pbar" aria-hidden="true"></div>
+
+<!-- the song lives here (offscreen YouTube player, or the mp3 below) -->
+<div class="ytwrap" aria-hidden="true"><div id="ytHolder"></div></div>
+<audio id="song" loop preload="none"></audio>
+
+<button id="musicToggle" class="music" type="button" aria-pressed="false" aria-label="Play music">
+  <span class="music__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l10-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>
+    </svg>
+  </span>
+  <span class="music__label" id="musicLabel">play song</span>
+</button>
+
+<main>
+
+  <!-- ══ hero ══ -->
+  <header class="hero" id="top">
+    <div class="hero__frame" aria-hidden="true"></div>
+    <div class="hero__frame hero__frame--in" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <svg class="hero__crest" viewBox="0 0 120 30" aria-hidden="true">
+        <path class="crest__line" d="M4 15 C 24 3, 40 27, 51 15" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <path class="crest__line" d="M69 15 C 80 27, 96 3, 116 15" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+        <path class="crest__heart" transform="translate(51.5,5) scale(0.72)" d="M12 21s-7.5-4.7-10-9.3C.6 8.1 2.6 4.5 6.2 4.5c2 0 3.6 1.1 4.5 2.7.9-1.6 2.5-2.7 4.5-2.7 3.6 0 5.6 3.6 4.2 7.2C19.5 16.3 12 21 12 21z" fill="currentColor"/>
+      </svg>
+      <p class="eyebrow eyebrow--ruled" id="dateLine"><span></span><em id="dateLineText"></em><span></span></p>
+      <div class="hero__namewrap">
+        <span class="hero__script" id="heroScript" aria-hidden="true"></span>
+        <h1 class="hero__name" id="heroName" aria-label=""></h1>
+      </div>
+      <p class="hero__sub" id="heroSub"></p>
+      <p class="hero__est" id="heroEst"></p>
+    </div>
+    <a class="scrollcue" href="#counter" aria-label="Scroll down">
+      <span class="scrollcue__line" aria-hidden="true"></span>
+      <span class="scrollcue__text">scroll</span>
+    </a>
+  </header>
+
+  <!-- ══ days together — rolling odometer ══ -->
+  <section class="section" id="counter">
+    <div class="wrap reveal">
+      <p class="eyebrow" id="counterEyebrow"></p>
+      <h2 class="title">Every second, counted</h2>
+      <div class="odo" id="odo" role="timer" aria-label="Time together">
+        <div class="odo__unit"><div class="odo__digits" data-unit="d"></div><span class="odo__lab">days</span></div>
+        <span class="odo__sep" aria-hidden="true"></span>
+        <div class="odo__unit"><div class="odo__digits" data-unit="h"></div><span class="odo__lab">hours</span></div>
+        <span class="odo__sep" aria-hidden="true"></span>
+        <div class="odo__unit"><div class="odo__digits" data-unit="m"></div><span class="odo__lab">minutes</span></div>
+        <span class="odo__sep" aria-hidden="true"></span>
+        <div class="odo__unit"><div class="odo__digits" data-unit="s"></div><span class="odo__lab">seconds</span></div>
+      </div>
+      <p class="odo__note" id="odoNote"></p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <!-- ══ our story — a golden thread that draws itself ══ -->
+  <section class="section" id="story">
+    <div class="wrap">
+      <p class="eyebrow reveal">The order it happened in</p>
+      <h2 class="title reveal">Our story</h2>
+    </div>
+    <div class="thread" id="thread">
+      <span class="thread__rail" aria-hidden="true"></span>
+      <span class="thread__fill" id="threadFill" aria-hidden="true"></span>
+      <ol class="thread__list" id="threadList"></ol>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <!-- ══ reasons — a deck she can keep drawing from ══ -->
+  <section class="section" id="reasons">
+    <div class="wrap">
+      <p class="eyebrow reveal" id="reasonsEyebrow"></p>
+      <h2 class="title reveal">Why I love you</h2>
+      <div class="deck reveal" id="deck">
+        <div class="deck__stack" aria-hidden="true"><i></i><i></i><i></i></div>
+        <button class="deck__card" id="deckCard" type="button">
+          <span class="deck__mark" aria-hidden="true"></span>
+          <p class="deck__text" id="deckText"></p>
+          <span class="deck__tap" aria-hidden="true">tap — there are more</span>
+        </button>
+      </div>
+      <p class="deck__count" id="deckCount"></p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <!-- ══ my promises ══ -->
+  <section class="section" id="promises">
+    <div class="wrap">
+      <p class="eyebrow reveal" id="promisesEyebrow"></p>
+      <h2 class="title reveal">My promises</h2>
+      <div class="vow reveal" id="vow">
+        <button class="vow__card" id="vowCard" type="button">
+          <span class="vow__count" id="vowCount"></span>
+          <p class="vow__text" id="vowText"></p>
+          <span class="vow__dots" id="vowDots" aria-hidden="true"></span>
+          <span class="vow__tap" aria-hidden="true">tap for the next one</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <!-- ══ the letter — sealed, then it climbs out ══ -->
+  <section class="section" id="letter">
+    <div class="wrap">
+      <p class="eyebrow reveal">Sealed, so only you open it</p>
+      <h2 class="title reveal">A letter for you</h2>
+
+      <div class="lettr reveal" id="lettr">
+        <div class="env" aria-hidden="true">
+          <span class="env__back"></span>
+          <span class="env__peek"></span>
+          <span class="env__pocket"></span>
+          <span class="env__flap"></span>
+        </div>
+        <button class="seal" id="seal" type="button" aria-expanded="false" aria-controls="paper">
+          <span class="seal__initial" id="sealInitial">S</span>
+          <span class="sr-only">Break the seal and read the letter</span>
+        </button>
+        <article class="paper" id="paper" hidden>
+          <p class="paper__greeting" id="greeting"></p>
+          <div id="letterBody"></div>
+          <p class="paper__sign"><span id="signoff"></span>
+            <svg class="paper__heart" id="signHeart" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path fill="currentColor" d="M12 21s-7.5-4.7-10-9.3C.6 8.1 2.6 4.5 6.2 4.5c2 0 3.6 1.1 4.5 2.7.9-1.6 2.5-2.7 4.5-2.7 3.6 0 5.6 3.6 4.2 7.2C19.5 16.3 12 21 12 21z"/>
+            </svg>
+          </p>
+        </article>
+      </div>
+      <p class="hint" id="sealHint">tap the wax seal</p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <!-- ══ the surprise ══ -->
+  <section class="section" id="gift">
+    <div class="wrap reveal">
+      <p class="eyebrow">One more thing</p>
+      <h2 class="title">There's something in here</h2>
+
+      <button class="giftbox" id="giftbox" type="button" aria-expanded="false" aria-controls="giftMsg">
+        <span class="giftbox__lid" aria-hidden="true"></span>
+        <span class="giftbox__base" aria-hidden="true"></span>
+        <span class="giftbox__ribbon" aria-hidden="true"></span>
+        <span class="giftbox__knot" aria-hidden="true"></span>
+        <span class="sr-only">Open the gift</span>
+      </button>
+      <p class="hint" id="giftHint">tap to open</p>
+      <p class="giftmsg" id="giftMsg" hidden></p>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+  <!-- ══ finale — our constellation ══ -->
+  <section class="section sky" id="sky">
+    <canvas id="skyCv" aria-hidden="true"></canvas>
+    <div class="wrap sky__wrap">
+      <div class="sky__head">
+        <p class="eyebrow reveal" id="skyEyebrow"></p>
+        <h2 class="title reveal" id="skyTitle"></h2>
+      </div>
+      <div class="sky__foot">
+        <p class="sky__cap" id="constCap"></p>
+        <p class="hint sky__hint" id="skyHint"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p class="footer__big" id="footerBig"></p>
+    <p class="footer__small" id="footerSmall"></p>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
